@@ -38,6 +38,7 @@ Kentaro Yoshida - https://github.com/y-ken
 
 my $host = exists $ENV{'host'} ? $ENV{'host'} : 'localhost';
 my $port = exists $ENV{'port'} ? $ENV{'port'} : 9200;
+my $protocol = exists $ENV{'protocol'} ? $ENV{'protocol'} : '';
 my $username = exists $ENV{'username'} ? $ENV{'username'} : '';
 my $password = exists $ENV{'password'} ? $ENV{'password'} : '';
 

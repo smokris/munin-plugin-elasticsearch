@@ -38,6 +38,7 @@ Kentaro Yoshida - https://github.com/y-ken
 
 my $host = exists $ENV{'host'} ? $ENV{'host'} : 'localhost';
 my $port = exists $ENV{'port'} ? $ENV{'port'} : 9200;
+my $protocol = exists $ENV{'protocol'} ? $ENV{'protocol'} : 'http';
 my $username = exists $ENV{'username'} ? $ENV{'username'} : '';
 my $password = exists $ENV{'password'} ? $ENV{'password'} : '';
 
@@ -57,14 +58,14 @@ sub get_json_from_url {
 }
 
 sub collect_max_file_descriptors {
-    my $data = get_json_from_url("http://$host:$port/_nodes/_local/stats/process");
+    my $data = get_json_from_url("$protocol://$host:$port/_nodes/_local/stats/process");
     foreach my $full_node_name (keys %{$data->{nodes}}) {
         return $data->{nodes}{$full_node_name}{process}{max_file_descriptors};
     }
 }
 
 sub collect_open_file_descriptors {
-    my $data = get_json_from_url("http://$host:$port/_nodes/_local/stats/process");
+    my $data = get_json_from_url("$protocol://$host:$port/_nodes/_local/stats/process");
     foreach my $full_node_name (keys %{$data->{nodes}}) {
         return $data->{nodes}{$full_node_name}{process}{open_file_descriptors};
     }
